@@ -35,6 +35,17 @@ Ezstream optionally uses:
 Building ezstream depends on:
 
  - [check](https://libcheck.github.io/check) unit testing framework for C
+ - [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/) or
+   compatible replacements
+ - [GNU make](https://www.gnu.org/software/make/) in case the system make(1)
+   does not work
+
+Developers of ezstream also need:
+
+ - [gettext](https://www.gnu.org/software/gettext/)
+ - [autoconf](https://www.gnu.org/software/autoconf/) version 2.69
+ - [automake](https://www.gnu.org/software/automake/)
+ - [libtool](https://www.gnu.org/software/libtool/)
 
 # Installation
 
@@ -73,7 +84,7 @@ If needed, verbose configuration error messages can be found in the
 `config.log` file.
 
 When working on a fresh checkout from source control, the `autogen.sh` script
-must be run first. It requires automake, autoconf, libtool, and gettext.
+must be run first.
 
 
 # Usage
