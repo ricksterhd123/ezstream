@@ -15,8 +15,16 @@ AC_PROG_CC_STDC
 AC_PROG_FGREP
 AC_CANONICAL_HOST
 
-BUILD_DATE=$(date '+%B %d, %Y')
-AC_SUBST([BUILD_DATE])
+SOURCE_DATE=$(date '+%B %d, %Y')
+if test -n "${SOURCE_DATE_EPOCH}"; then
+	if test -n "$(date --version 2> /dev/null | head -n 1 | grep GNU)"; then
+		SOURCE_DATE="$(LC_ALL=C date -u -d "@${SOURCE_DATE_EPOCH}" '+%B %d, %Y')"
+	else
+		# Assume BSD date
+		SOURCE_DATE="$(LC_ALL=C date -u -r "${SOURCE_DATE_EPOCH}" '+%B %d, %Y')"
+	fi
+fi
+AC_SUBST([SOURCE_DATE])
 
 EXAMPLES_DIR="\$(datadir)/examples/${PACKAGE_TARNAME}"
 AC_ARG_ENABLE([examplesdir],

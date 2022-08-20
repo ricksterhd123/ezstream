@@ -9,7 +9,7 @@
 .\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 .\" GNU General Public License for more details.
 .\"
-.Dd @BUILD_DATE@
+.Dd @SOURCE_DATE@
 .Dt EZSTREAM 1
 .Os @PACKAGE_NAME@ @PACKAGE_VERSION@
 .Sh NAME
