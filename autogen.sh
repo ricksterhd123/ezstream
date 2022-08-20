@@ -10,7 +10,7 @@ if [ ! -f "./$(basename $0)" ]; then
 	exit 1
 fi
 
-USE_LIBTOOL="$(grep AC_PROG_LIBTOOL ./configure.* 2> /dev/null)"
+USE_LIBTOOL="$(grep ^LT_INIT ./configure.* 2> /dev/null)"
 
 EXTRA=
 if [ -d m4 ]; then

@@ -3,7 +3,7 @@ dnl ## SETUP ###########################################################
 dnl ###########
 
 AC_INIT([ezstream], [1.0.2], [https://gitlab.xiph.org/xiph/ezstream/issues])
-AC_PREREQ([2.61])
+AC_PREREQ([2.69])
 AC_CONFIG_SRCDIR([src/ezstream.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE
@@ -29,7 +29,7 @@ AC_ARG_ENABLE([examplesdir],
 esac], [])
 AC_SUBST([EXAMPLES_DIR])
 
-AC_PROG_LIBTOOL
+LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
 EZ_CFLAGS=""
