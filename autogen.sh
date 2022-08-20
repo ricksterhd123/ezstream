@@ -10,6 +10,11 @@ if [ ! -f "./$(basename $0)" ]; then
 	exit 1
 fi
 
+test -n "${AUTOCONF_VERSION}" || AUTOCONF_VERSION="${_ac_version}"
+test -n "${AUTOMAKE_VERSION}" || AUTOMAKE_VERSION="${_am_version}"
+test -n "${DEFAULT_AUTOCONF}" || DEFAULT_AUTOCONF="${_ac_version}"
+export AUTOCONF_VERSION AUTOMAKE_VERSION DEFAULT_AUTOCONF
+
 USE_LIBTOOL="$(grep ^LT_INIT ./configure.* 2> /dev/null)"
 
 EXTRA=
@@ -21,18 +26,13 @@ if [ -d /usr/local/share/aclocal ]; then
 	EXTRA="${EXTRA} -I /usr/local/share/aclocal"
 fi
 
-AUTOCONF_VERSION="${_ac_version}" AUTOMAKE_VERSION="${_am_version}" \
-	aclocal ${EXTRA} || exit 1
-AUTOCONF_VERSION="${_ac_version}" AUTOMAKE_VERSION="${_am_version}" \
-	autoconf || exit 1
-AUTOCONF_VERSION="${_ac_version}" AUTOMAKE_VERSION="${_am_version}" \
-	autoheader || exit 1
+aclocal ${EXTRA} || exit 1
+autoconf || exit 1
+autoheader || exit 1
 if [ -n "${USE_LIBTOOL}" ]; then
-	AUTOCONF_VERSION="${_ac_version}" AUTOMAKE_VERSION="${_am_version}" \
-		libtoolize --automake -c -f || exit 1
+	libtoolize --automake -c -f || exit 1
 fi
-AUTOCONF_VERSION="${_ac_version}" AUTOMAKE_VERSION="${_am_version}" \
-	automake -a -c || exit 1
+automake -a -c || exit 1
 
 rm -r autom4te.cache
 
