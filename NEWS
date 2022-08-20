@@ -402,7 +402,7 @@ Changes in 0.1.2, released on 2004-04-21:
 
 
 
-Changes is 0.1.1, released on 2004-02-02:
+Changes in 0.1.1, released on 2004-02-02:
 
  * src/ezstream.c:
    - [FIX]   Set read mode to binary for stdin on WIN32.
