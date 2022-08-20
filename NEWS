@@ -1,3 +1,10 @@
+Changes in 1.NNN, released on YYYY-MM-DD:
+
+* Fix regression when streaming formats other than Ogg (e.g. MP3). From
+  zygmund2000 on Github (#30) and Roland Hermans on GitLab (#2271).
+
+
+
 Changes in 1.0.2, released on 2021-02-12:
 
  * Fix a crash, if metadata placeholders are configured for input files
