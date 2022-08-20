@@ -2,6 +2,7 @@ Changes in 1.NNN, released on YYYY-MM-DD:
 
 * Fix regression when streaming formats other than Ogg (e.g. MP3). From
   zygmund2000 on Github (#30) and Roland Hermans on GitLab (#2271).
+* Fix build issue on OSX. From Mitchell Blank on GitLab (#2270).
 
 
 
