@@ -101,4 +101,9 @@ int		playlist_reread(playlist_t *);
  */
 void		playlist_shuffle(playlist_t);
 
+/*
+ * Return the path where the playlist file or program is located on disk.
+ */
+const char *	playlist_get_location(playlist_t);
+
 #endif /* __PLAYLIST_H__ */

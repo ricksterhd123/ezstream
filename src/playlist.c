@@ -27,6 +27,9 @@
 #endif
 
 #include <errno.h>
+#if defined(HAVE_LIBGEN_H)
+# include <libgen.h>
+#endif /* HAVE_LIBGEN_H */
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,6 +48,7 @@
 
 struct playlist {
 	char	 *filename;
+	char	 *location;
 	char	**list;
 	size_t	  size;
 	size_t	  num;
@@ -62,9 +66,15 @@ static struct playlist *
 _playlist_create(const char *filename)
 {
 	struct playlist *pl;
+	char		*tmp;
 
 	pl = xcalloc(1UL, sizeof(*pl));
 	pl->filename = xstrdup(filename);
+	tmp = xstrdup(filename);
+	pl->location = xstrdup(dirname(tmp));
+	xfree(tmp);
+	if (NULL == pl->location)
+		pl->location = xstrdup(".");
 
 	return (pl);
 }
@@ -289,6 +299,10 @@ playlist_free(struct playlist **pl_p)
 		xfree(pl->filename);
 		pl->filename = NULL;
 	}
+	if (pl->location != NULL) {
+		xfree(pl->location);
+		pl->location = NULL;
+	}
 
 	if (pl->list != NULL) {
 		if (pl->size > 0) {
@@ -436,4 +450,10 @@ playlist_shuffle(struct playlist *pl)
 		pl->list[d] = pl->list[i];
 		pl->list[i] = temp;
 	}
+}
+
+const char *
+playlist_get_location(struct playlist *pl)
+{
+	return (pl->location);
 }

@@ -15,6 +15,7 @@ START_TEST(test_playlist_file)
 	ck_assert_ptr_eq(playlist_read("nonexistent.txt"), NULL);
 	p = playlist_read(SRCDIR "/playlist.txt");
 	ck_assert_ptr_ne(p, NULL);
+	ck_assert_str_eq(playlist_get_location(p), SRCDIR);
 	ck_assert_uint_gt(playlist_get_num_items(p), 0);
 	ck_assert_str_eq(playlist_get_next(p), "1.ogg");
 	playlist_skip_next(p);
