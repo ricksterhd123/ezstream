@@ -643,8 +643,11 @@ streamFile(stream_t stream, const char *fileName)
 int
 streamPlaylist(stream_t stream)
 {
-	const char	*song;
-	char		 lastSong[PATH_MAX];
+	int		 ret;
+	const char	*song_next;
+	char		 song_prev[PATH_MAX];
+	char		*song_path;
+	char		 tmp_path[2 * PATH_MAX];
 	cfg_intake_t	 cfg_intake = stream_get_cfg_intake(stream);
 
 	if (playlist == NULL) {
@@ -678,12 +681,30 @@ streamPlaylist(stream_t stream)
 	    cfg_intake_get_shuffle(cfg_intake))
 		playlist_shuffle(playlist);
 
-	while ((song = playlist_get_next(playlist)) != NULL) {
-		strlcpy(lastSong, song, sizeof(lastSong));
-		if (!streamFile(stream, song))
+	while ((song_next = playlist_get_next(playlist)) != NULL) {
+		strlcpy(song_prev, song_next, sizeof(song_prev));
+
+		if ('/' == song_next[0])
+			(void)snprintf(tmp_path, sizeof(tmp_path), "%s",
+			    song_next);
+		else
+			(void)snprintf(tmp_path, sizeof(tmp_path), "%s/%s",
+			    playlist_get_location(playlist), song_next);
+
+		song_path = realpath(tmp_path, NULL);
+		if (NULL == song_path) {
+			log_warning("%s: %s", song_next, strerror(errno));
 			return (0);
+		}
+		ret = streamFile(stream, song_path);
+		free(song_path);
+
+		if (!ret)
+			return (0);
+
 		if (quit)
 			break;
+
 		if (rereadPlaylist) {
 			rereadPlaylist = rereadPlaylist_notify = 0;
 			if (CFG_INTAKE_PROGRAM == cfg_intake_get_type(cfg_intake))
@@ -694,7 +715,7 @@ streamPlaylist(stream_t stream)
 			if (cfg_intake_get_shuffle(cfg_intake))
 				playlist_shuffle(playlist);
 			else {
-				playlist_goto_entry(playlist, lastSong);
+				playlist_goto_entry(playlist, song_prev);
 				playlist_skip_next(playlist);
 			}
 			continue;
