@@ -48,6 +48,7 @@
       <filename></filename>
       <shuffle></shuffle>
       <stream_once></stream_once>
+      <rel_to_list></rel_to_list>
     </intake>
   </intakes>
 

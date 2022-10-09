@@ -143,11 +143,14 @@
       <!-- Input file, program name, or "stdin" keyword (deprecated) -->
       <filename>playlist.m3u</filename>
 
-      <!-- Setting to shuffle playlists -->
+      <!-- Shuffle playlists (default: no) -->
       <shuffle>Yes</shuffle>
 
-      <!-- Setting whether to stream intake indefinitely or only once -->
+      <!-- Stream intake indefinitely or only once (default: no) -->
       <stream_once>Yes</stream_once>
+
+      <!-- Search for files relative to the playlist location (default: no) -->
+      <rel_to_list>Yes</rel_to_list>
     </intake>
   </intakes>
 

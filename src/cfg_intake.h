@@ -57,6 +57,8 @@ int	cfg_intake_set_shuffle(cfg_intake_t, cfg_intake_list_t, const char *,
 	    const char **);
 int	cfg_intake_set_stream_once(cfg_intake_t, cfg_intake_list_t,
 	    const char *, const char **);
+int	cfg_intake_set_rel_to_list(cfg_intake_t, cfg_intake_list_t,
+	    const char *, const char **);
 
 int	cfg_intake_validate(cfg_intake_t, const char **);
 
@@ -70,5 +72,6 @@ const char *
 	cfg_intake_get_filename(cfg_intake_t);
 int	cfg_intake_get_shuffle(cfg_intake_t);
 int	cfg_intake_get_stream_once(cfg_intake_t);
+int	cfg_intake_get_rel_to_list(cfg_intake_t);
 
 #endif /* __CFG_INTAKE_H__ */

@@ -222,6 +222,7 @@ _cfgfile_xml_parse_intake(xmlDocPtr doc, xmlNodePtr cur)
 		XML_INPUT_SET(i, il, cfg_intake_set_filename,    "filename");
 		XML_INPUT_SET(i, il, cfg_intake_set_shuffle,     "shuffle");
 		XML_INPUT_SET(i, il, cfg_intake_set_stream_once, "stream_once");
+		XML_INPUT_SET(i, il, cfg_intake_set_rel_to_list, "rel_to_list");
 	}
 
 	if (0 > cfg_intake_validate(i, &errstr)) {
@@ -438,6 +439,7 @@ _cfgfile_xml_parse_encoders(xmlDocPtr doc, xmlNodePtr cur)
  *             filename
  *             shuffle
  *             stream_once
+ *             rel_to_list
  *         ...
  *     metadata
  *         program
@@ -650,6 +652,8 @@ _cfgfile_xml_print_intake(cfg_intake_t i, void *arg)
 		fprintf(fp, "      <shuffle>yes</shuffle>\n");
 	if (cfg_intake_get_stream_once(i))
 		fprintf(fp, "      <stream_once>yes</stream_once>\n");
+	if (cfg_intake_get_rel_to_list(i))
+		fprintf(fp, "      <rel_to_list>yes</rel_to_list>\n");
 	fprintf(fp, "    </intake>\n");
 }
 

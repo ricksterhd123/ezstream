@@ -684,7 +684,8 @@ streamPlaylist(stream_t stream)
 	while ((song_next = playlist_get_next(playlist)) != NULL) {
 		strlcpy(song_prev, song_next, sizeof(song_prev));
 
-		if ('/' == song_next[0])
+		if ('/' == song_next[0] ||
+		    !cfg_intake_get_rel_to_list(cfg_intake))
 			(void)snprintf(tmp_path, sizeof(tmp_path), "%s",
 			    song_next);
 		else

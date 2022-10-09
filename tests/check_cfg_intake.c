@@ -105,6 +105,13 @@ START_TEST(test_intake_set_stream_once)
 }
 END_TEST
 
+START_TEST(test_intake_set_rel_to_list)
+{
+	TEST_BOOLEAN_T(cfg_intake_t, cfg_intake_list_get, intakes,
+	    cfg_intake_set_rel_to_list, cfg_intake_get_rel_to_list);
+}
+END_TEST
+
 START_TEST(test_intake_validate)
 {
 	cfg_intake_t	 in = cfg_intake_list_get(intakes, "test_intake_validate");
@@ -147,6 +154,7 @@ cfg_suite(void)
 	tcase_add_test(tc_intake, test_intake_set_filename);
 	tcase_add_test(tc_intake, test_intake_set_shuffle);
 	tcase_add_test(tc_intake, test_intake_set_stream_once);
+	tcase_add_test(tc_intake, test_intake_set_rel_to_list);
 	tcase_add_test(tc_intake, test_intake_validate);
 	suite_add_tcase(s, tc_intake);
 

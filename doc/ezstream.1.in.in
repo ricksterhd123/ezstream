@@ -498,6 +498,19 @@ default).
 .It Ar 1|Yes|True
 After streaming all media input, exit.
 .El
+.It Sy \&<rel_to_list\ /\&>
+Boolean setting, whether to locate playlist entries
+.Qq relative to the list .
+Entries with absolute path names are not affected.
+.Pp
+.Bl -tag -width 0|NO|FALSE -compact
+.It Ar 0|No|False
+Find files relative to the current working directory of
+.Nm
+(the default).
+.It Ar 1|Yes|True
+Find files relative to the location of the playlist file or program.
+.El
 .El
 .Ss Metadata block
 .Bl -tag -width -Ds

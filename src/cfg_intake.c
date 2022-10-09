@@ -35,6 +35,7 @@ struct cfg_intake {
 	char			 filename[PATH_MAX];
 	int			 shuffle;
 	int			 stream_once;
+	int			 rel_to_list;
 };
 
 TAILQ_HEAD(cfg_intake_list, cfg_intake);
@@ -228,6 +229,15 @@ cfg_intake_set_stream_once(struct cfg_intake *i, struct cfg_intake_list *not_use
 }
 
 int
+cfg_intake_set_rel_to_list(struct cfg_intake *i, struct cfg_intake_list *not_used,
+    const char *rel_to_list, const char **errstrp)
+{
+	(void)not_used;
+	SET_BOOLEAN(i->rel_to_list, rel_to_list, errstrp);
+	return (0);
+}
+
+int
 cfg_intake_validate(struct cfg_intake *i, const char **errstrp)
 {
 	if (!cfg_intake_get_filename(i) &&
@@ -286,4 +296,10 @@ int
 cfg_intake_get_stream_once(struct cfg_intake *i)
 {
 	return (i->stream_once);
+}
+
+int
+cfg_intake_get_rel_to_list(struct cfg_intake *i)
+{
+	return (i->rel_to_list);
 }
