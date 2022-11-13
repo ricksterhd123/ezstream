@@ -35,7 +35,7 @@
   <decoders>
     <decoder>
       <name>OggDec</name>
-      <program>oggdec -R -b 16 -e 1 -s 1 -o - @T@</program>
+      <program>oggdec -R -b 16 -o - @T@</program>
       <file_ext>.ogg</file_ext>
       <file_ext>.oga</file_ext>
     </decoder>
