@@ -35,7 +35,7 @@
   <decoders>
     <decoder>
       <name>OggDec</name>
-      <program>oggdec -R -b 16 -e 1 -s 1 -o - @T@</program>
+      <program>oggdec -R -b 16 -o - @T@</program>
       <file_ext>.ogg</file_ext>
       <file_ext>.oga</file_ext>
     </decoder>
@@ -56,6 +56,12 @@
       <name>AAC</name>
       <program>faad -d -f 2 -w @T@</program>
       <file_ext>.m4a</file_ext>
+    </decoder>
+
+    <decoder>
+      <name>Opus</name>
+      <program>opusdec --rate 44100 @T@ -</program>
+      <file_ext>.opus</file_ext>
     </decoder>
   </decoders>
 
