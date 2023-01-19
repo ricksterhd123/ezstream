@@ -1,13 +1,13 @@
 Changes in 1.1.0, released on YYYY-MM-DD:
 
-* Fix regression when streaming formats other than Ogg (e.g. MP3). From
-  zygmund2000 on Github (#30) and Roland Hermans on GitLab (#2271).
-* Fix build issue on OSX. From Mitchell Blank on GitLab (#2270).
-* Support reproducible builds. Via Unit 193 on GitLab (#2276).
-* Update autoconf requirement to 2.69
-* Add <rel_to_list /> setting to look for files relative to the playlist
-  file location instead of the current working directory. From Dan Sanford
-  on GitLab (#2283).
+ * Fix regression when streaming formats other than Ogg (e.g. MP3). From
+   zygmund2000 on Github (#30) and Roland Hermans on GitLab (#2271).
+ * Fix build issue on OSX. From Mitchell Blank on GitLab (#2270).
+ * Support reproducible builds. Via Unit 193 on GitLab (#2276).
+ * Update autoconf requirement to 2.69
+ * Add <rel_to_list /> setting to look for files relative to the playlist
+   file location instead of the current working directory. From Dan Sanford
+   on GitLab (#2283).
 
 
 
@@ -59,7 +59,7 @@ Changes in 1.0.0, released on 2020-01-29:
 
 Changes in 0.6.1, released on 2020-01-29:
 
-* src/util.c
+ * src/util.c
    - [FIX]   Fix crash on missing <format/> element. From Petr Pisar.
              (Ticket #2208)
 
