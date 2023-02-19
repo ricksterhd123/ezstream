@@ -500,7 +500,7 @@ stream_set_metadata(struct stream *s, mdata_t md, char **md_str)
 	}
 
 	if ((ret = shout_set_metadata(s->shout, shout_md)) != SHOUTERR_SUCCESS)
-		log_warning("shout_set_metadata: %s", shout_get_error(s->shout));
+		log_warning("shout_set_metadata: error %d", ret);
 
 	shout_metadata_free(shout_md);
 
@@ -568,9 +568,12 @@ stream_connect(struct stream *s)
 void
 stream_disconnect(struct stream *s)
 {
-	if (!stream_get_connected(s))
+	if (!stream_get_connected(s)) {
+		log_debug("stream: %s: not connected", s->name);
 		return;
-	shout_close(s->shout);
+	}
+	log_debug("stream: %s: disconnecting: %d", s->name,
+	    shout_close(s->shout));
 }
 
 void
